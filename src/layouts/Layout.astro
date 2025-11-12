@@ -1,0 +1,70 @@
+---
+import Navigation from "../components/Navigation.astro";
+import Footer from "../components/Footer.astro";
+import "../styles/main.css";
+
+interface Props {
+  title: string;
+  description?: string;
+}
+
+const { title, description } = Astro.props;
+const currentPath = Astro.url.pathname;
+---
+
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{title}</title>
+    {description && <meta name="description" content={description} />}
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="generator" content={Astro.generator} />
+  </head>
+  <body>
+    <!-- Scroll Progress Indicator -->
+    <div class="scroll-progress"></div>
+
+    <!-- Floating Elements -->
+    <div class="floating-elements">
+      <div class="floating-circle"></div>
+      <div class="floating-circle"></div>
+      <div class="floating-circle"></div>
+      <div class="floating-circle"></div>
+      <div class="floating-circle"></div>
+    </div>
+
+    <!-- Cursor Glow Effect -->
+    <div class="cursor-glow"></div>
+
+    <!-- Navigation -->
+    <Navigation currentPath={currentPath} />
+
+    <!-- Main Content -->
+    <slot />
+
+    <!-- Footer -->
+    <Footer />
+
+    <!-- Floating Action Button -->
+    <button
+      class="fab"
+      onclick="window.scrollTo({top: 0, behavior: 'smooth'})"
+      title="Ir arriba"
+    >
+      <svg viewBox="0 0 24 24" fill="currentColor">
+        <path d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path>
+      </svg>
+    </button>
+
+    <!-- Main script -->
+    <script src="/script.js" is:inline></script>
+  </body>
+</html>

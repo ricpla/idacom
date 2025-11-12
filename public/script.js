@@ -795,7 +795,6 @@ class AccessibilityEnhancer {
     constructor() {
         this.setupKeyboardNavigation();
         this.setupAriaLabels();
-        this.setupFocusManagement();
     }
 
     setupKeyboardNavigation() {
@@ -825,35 +824,196 @@ class AccessibilityEnhancer {
             }
         });
     }
+}
 
-    setupFocusManagement() {
-        // Skip to main content functionality
-        const skipLink = document.createElement('a');
-        skipLink.href = '#inicio';
-        skipLink.textContent = 'Saltar al contenido principal';
-        skipLink.className = 'skip-link';
-        skipLink.style.cssText = `
-            position: absolute;
-            top: -40px;
-            left: 6px;
-            background: var(--primary-color);
-            color: white;
-            padding: 8px;
-            text-decoration: none;
-            border-radius: 4px;
-            z-index: 10000;
-            transition: top 0.3s;
-        `;
-        
-        skipLink.addEventListener('focus', () => {
-            skipLink.style.top = '6px';
+// Video Slider
+class VideoSlider {
+    constructor() {
+        this.slider = document.querySelector('.videos-slider');
+        this.cards = document.querySelectorAll('.video-card');
+        this.prevBtn = document.querySelector('.video-slider-btn.prev');
+        this.nextBtn = document.querySelector('.video-slider-btn.next');
+        this.dotsContainer = document.querySelector('.video-slider-dots');
+        this.currentIndex = 0;
+        this.isAnimating = false;
+
+        if (!this.slider || this.cards.length === 0) return;
+
+        this.init();
+    }
+
+    init() {
+        this.createDots();
+        this.setupEventListeners();
+        this.updateSlider();
+
+        // Auto-play (optional)
+        this.startAutoPlay();
+    }
+
+    createDots() {
+        this.cards.forEach((_, index) => {
+            const dot = document.createElement('button');
+            dot.classList.add('video-slider-dot');
+            dot.setAttribute('aria-label', `Ir al video ${index + 1}`);
+            if (index === 0) dot.classList.add('active');
+
+            dot.addEventListener('click', () => {
+                this.goToSlide(index);
+            });
+
+            this.dotsContainer.appendChild(dot);
         });
-        
-        skipLink.addEventListener('blur', () => {
-            skipLink.style.top = '-40px';
+        this.dots = document.querySelectorAll('.video-slider-dot');
+    }
+
+    setupEventListeners() {
+        if (this.prevBtn) {
+            this.prevBtn.addEventListener('click', () => this.prev());
+        }
+
+        if (this.nextBtn) {
+            this.nextBtn.addEventListener('click', () => this.next());
+        }
+
+        // Touch/swipe support
+        let startX = 0;
+        let currentX = 0;
+        let isDragging = false;
+
+        this.slider.addEventListener('touchstart', (e) => {
+            startX = e.touches[0].clientX;
+            isDragging = true;
+            this.stopAutoPlay();
         });
-        
-        document.body.insertBefore(skipLink, document.body.firstChild);
+
+        this.slider.addEventListener('touchmove', (e) => {
+            if (!isDragging) return;
+            currentX = e.touches[0].clientX;
+        });
+
+        this.slider.addEventListener('touchend', () => {
+            if (!isDragging) return;
+
+            const diff = startX - currentX;
+
+            if (Math.abs(diff) > 50) {
+                if (diff > 0) {
+                    this.next();
+                } else {
+                    this.prev();
+                }
+            }
+
+            isDragging = false;
+            this.startAutoPlay();
+        });
+
+        // Keyboard navigation
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'ArrowLeft') {
+                this.prev();
+            } else if (e.key === 'ArrowRight') {
+                this.next();
+            }
+        });
+
+        // Pause autoplay when hovering
+        this.slider.addEventListener('mouseenter', () => {
+            this.stopAutoPlay();
+        });
+
+        this.slider.addEventListener('mouseleave', () => {
+            this.startAutoPlay();
+        });
+    }
+
+    updateSlider() {
+        if (this.isAnimating) return;
+        this.isAnimating = true;
+
+        // For desktop: calculate the scroll position
+        if (window.innerWidth > 768) {
+            const cardWidth = this.cards[0].offsetWidth;
+            const gap = parseInt(getComputedStyle(this.slider).gap) || 32;
+            const scrollPosition = this.currentIndex * (cardWidth + gap);
+
+            this.slider.scrollTo({
+                left: scrollPosition,
+                behavior: 'smooth'
+            });
+        } else {
+            // For mobile: use scroll snap
+            const card = this.cards[this.currentIndex];
+            if (card) {
+                card.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+            }
+        }
+
+        // Update dots
+        this.dots.forEach((dot, index) => {
+            dot.classList.toggle('active', index === this.currentIndex);
+        });
+
+        // Update button states
+        if (this.prevBtn) {
+            this.prevBtn.style.opacity = this.currentIndex === 0 ? '0.5' : '1';
+            this.prevBtn.style.pointerEvents = this.currentIndex === 0 ? 'none' : 'auto';
+        }
+
+        if (this.nextBtn) {
+            this.nextBtn.style.opacity = this.currentIndex === this.cards.length - 1 ? '0.5' : '1';
+            this.nextBtn.style.pointerEvents = this.currentIndex === this.cards.length - 1 ? 'none' : 'auto';
+        }
+
+        setTimeout(() => {
+            this.isAnimating = false;
+        }, 500);
+    }
+
+    goToSlide(index) {
+        if (index < 0 || index >= this.cards.length || index === this.currentIndex) return;
+        this.currentIndex = index;
+        this.updateSlider();
+        this.stopAutoPlay();
+        this.startAutoPlay();
+    }
+
+    next() {
+        if (this.currentIndex < this.cards.length - 1) {
+            this.currentIndex++;
+            this.updateSlider();
+        } else {
+            // Loop to first
+            this.currentIndex = 0;
+            this.updateSlider();
+        }
+    }
+
+    prev() {
+        if (this.currentIndex > 0) {
+            this.currentIndex--;
+            this.updateSlider();
+        } else {
+            // Loop to last
+            this.currentIndex = this.cards.length - 1;
+            this.updateSlider();
+        }
+    }
+
+    startAutoPlay() {
+        this.stopAutoPlay();
+        // Auto-advance every 5 seconds
+        this.autoPlayInterval = setInterval(() => {
+            this.next();
+        }, 5000);
+    }
+
+    stopAutoPlay() {
+        if (this.autoPlayInterval) {
+            clearInterval(this.autoPlayInterval);
+            this.autoPlayInterval = null;
+        }
     }
 }
 
@@ -861,24 +1021,27 @@ class AccessibilityEnhancer {
 document.addEventListener('DOMContentLoaded', () => {
     // Initialize main website functionality
     new IDACOMWebsite();
-    
+
     // Initialize enhanced animations
     new CardAnimations();
-    
+
     // Initialize performance optimizations
     new PerformanceOptimizer();
-    
+
     // Initialize analytics
     new Analytics();
-    
+
     // Initialize accessibility enhancements
     new AccessibilityEnhancer();
-    
+
+    // Initialize video slider
+    new VideoSlider();
+
     // Initialize particle system (only on desktop for performance)
     if (window.innerWidth > 768 && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
         new ParticleSystem();
     }
-    
+
     // Initialize form validation
     const contactForm = document.getElementById('contactForm');
     if (contactForm) {

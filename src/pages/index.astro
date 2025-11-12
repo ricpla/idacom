@@ -1,458 +1,501 @@
 ---
-
+import Layout from "../layouts/Layout.astro";
 ---
 
-<html lang="es">
-	<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Instituto De Acción Comunitaria - IDACOM</title>
-    <meta name="description" content="Instituto de Acción Comunitaria Inc. (IDAC) - Organización No Gubernamental dedicada al desarrollo integral de comunidades vulnerables en República Dominicana">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <style>
-        @import "../styles/main.css";
-    </style>
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<meta name="generator" content={Astro.generator} />
-	</head>
-	<body>
-    <!-- Scroll Progress Indicator -->
-    <div class="scroll-progress"></div>
-    
-    <!-- Floating Elements -->
-    <div class="floating-elements">
-        <div class="floating-circle"></div>
-        <div class="floating-circle"></div>
-        <div class="floating-circle"></div>
-        <div class="floating-circle"></div>
-        <div class="floating-circle"></div>
+<Layout
+  title="Instituto De Acción Comunitaria - IDACOM"
+  description="Instituto de Acción Comunitaria Inc. (IDAC) - Organización No Gubernamental dedicada al desarrollo integral de comunidades vulnerables en República Dominicana"
+>
+  <!-- Hero Section -->
+  <section id="inicio" class="hero">
+    <div class="hero-background">
+      <video autoplay muted loop playsinline class="hero-video">
+        <source
+          src="https://video.wixstatic.com/video/ea7cef_e50277d5ebc04ea3a57e2850fba78195/1080p/mp4/file.mp4"
+          type="video/mp4"
+        />
+      </video>
+      <div class="hero-overlay"></div>
     </div>
-    
-    <!-- Cursor Glow Effect -->
-    <div class="cursor-glow"></div>
-    
-    <!-- Header Section -->
-    <header class="header">
-        <nav class="navbar">
-            <div class="nav-container">
-                <div class="nav-brand">
-                    <img src="https://static.wixstatic.com/media/ea7cef_c913d06ee6d2465ea92a4f508e2c3153~mv2.png/v1/fill/w_141,h_110,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/LOGO%201vv.png" alt="IDACOM Logo" class="logo">
-                    <span class="brand-text">IDACOM</span>
-                </div>
-                
-                <div class="nav-menu" id="navMenu">
-                    <a href="#inicio" class="nav-link active">INICIO</a>
-                    <a href="#nosotros" class="nav-link">NOSOTROS</a>
-                    <a href="#proyectos" class="nav-link">PROYECTOS</a>
-                    <a href="#noticias" class="nav-link">NOTICIAS</a>
-                    <a href="#galeria" class="nav-link">GALERÍA</a>
-                    <a href="#contacto" class="nav-link">CONTACTO</a>
-                    <a href="#donacion" class="nav-link btn-donate">DONACIÓN</a>
-                </div>
 
-                <div class="nav-toggle" id="navToggle">
-                    <span></span>
-                    <span></span>
-                    <span></span>
-                </div>
-            </div>
-        </nav>
-    </header>
+    <div class="hero-content">
+      <h1 class="hero-title">Instituto De Acción Comunitaria</h1>
+      <p class="hero-subtitle">
+        Trabajando por el desarrollo integral de las comunidades más
+        vulnerables de República Dominicana
+      </p>
+      <div class="hero-buttons">
+        <a href="#nosotros" class="btn btn-primary neon-glow pulse-animation"
+          >Conoce Más</a
+        >
+        <a href="tel:809-238-5843" class="btn btn-secondary magnetic-btn">
+          <svg class="btn-icon" viewBox="0 0 24 24" fill="currentColor">
+            <path
+              d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"
+            ></path>
+          </svg>
+          809-238-5843
+        </a>
+      </div>
 
-    <!-- Hero Section -->
-    <section id="inicio" class="hero">
-        <div class="hero-background">
-            <video autoplay muted loop playsinline class="hero-video">
-                <source src="https://video.wixstatic.com/video/ea7cef_e50277d5ebc04ea3a57e2850fba78195/1080p/mp4/file.mp4" type="video/mp4">
-            </video>
-            <div class="hero-overlay"></div>
+      <div class="social-links">
+        <a
+          href="https://www.facebook.com/profile.php?id=100008531234808"
+          target="_blank"
+          rel="noopener"
+          aria-label="Facebook"
+        >
+          <img
+            src="https://static.wixstatic.com/media/e316f544f9094143b9eac01f1f19e697.png/v1/fill/w_39,h_39,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/e316f544f9094143b9eac01f1f19e697.png"
+            alt="Facebook"
+          />
+        </a>
+        <a
+          href="https://twitter.com/IDACOficialRD?s=08"
+          target="_blank"
+          rel="noopener"
+          aria-label="Twitter"
+        >
+          <img
+            src="https://static.wixstatic.com/media/9c4b521dd2404cd5a05ed6115f3a0dc8.png/v1/fill/w_39,h_39,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/9c4b521dd2404cd5a05ed6115f3a0dc8.png"
+            alt="Twitter"
+          />
+        </a>
+        <a
+          href="https://youtube.com/channel/UCOwNIHQkYG3ZBdP-euoLBJw"
+          target="_blank"
+          rel="noopener"
+          aria-label="YouTube"
+        >
+          <img
+            src="https://static.wixstatic.com/media/a1b09fe8b7f04378a9fe076748ad4a6a.png/v1/fill/w_39,h_39,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/a1b09fe8b7f04378a9fe076748ad4a6a.png"
+            alt="YouTube"
+          />
+        </a>
+        <a
+          href="https://instagram.com/idacom.rd"
+          target="_blank"
+          rel="noopener"
+          aria-label="Instagram"
+        >
+          <img
+            src="https://static.wixstatic.com/media/8d6893330740455c96d218258a458aa4.png/v1/fill/w_39,h_39,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/8d6893330740455c96d218258a458aa4.png"
+            alt="Instagram"
+          />
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- About Section -->
+  <section id="nosotros" class="about">
+    <div class="container">
+      <div class="section-header">
+        <h2 class="section-title">NOSOTROS</h2>
+        <div class="section-divider"></div>
+      </div>
+
+      <div class="about-content">
+        <div class="about-text">
+          <p>
+            El Instituto de Acción Comunitaria Inc. –IDAC– es una Organización
+            No Gubernamental de servicio público a la comunidad, que orienta
+            sus actividades hacia la superación de los factores que generan
+            las condiciones de resagamiento y vulnerabilidad de comunidades
+            suburbanas y rurales en la provincia de San Cristóbal, en bateyes
+            azucareros y comunidades cañeras no bateyanas, así como en las
+            provincias de San Pedro de Macorís y Monte Plata.
+          </p>
+
+          <p>
+            El IDAC presta especial atención a las comunidades ubicadas en
+            lugares marginados, con la finalidad de promover los mayores
+            niveles en las condiciones y calidad de vida de hombres y mujeres
+            para un pleno disfrute de un ambiente sano, acogedor y motivador.
+          </p>
+
+          <p>
+            El IDAC fue fundado el 28 de julio del 1983. El 14 de noviembre
+            del 1992, recibe el beneficio de la incorporación legal, en
+            conformidad a la Ley 520 del 1920, mediante Decreto 325-92. Esta
+            ley fue sustituida por la Ley 122-05 de fecha 3 de mayo del 2005.
+          </p>
         </div>
-        
-        <div class="hero-content">
-            <h1 class="hero-title">Instituto De Acción Comunitaria</h1>
-            <p class="hero-subtitle">Trabajando por el desarrollo integral de las comunidades más vulnerables de República Dominicana</p>
-            <div class="hero-buttons">
-                <a href="#nosotros" class="btn btn-primary neon-glow pulse-animation">Conoce Más</a>
-                <a href="tel:809-238-5843" class="btn btn-secondary magnetic-btn">
-                    <svg class="btn-icon" viewBox="0 0 24 24" fill="currentColor">
-                        <path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/>
-                    </svg>
-                    809-238-5843
-                </a>
-            </div>
-            
-            <div class="social-links">
-                <a href="https://www.facebook.com/profile.php?id=100008531234808" target="_blank" rel="noopener" aria-label="Facebook">
-                    <img src="https://static.wixstatic.com/media/e316f544f9094143b9eac01f1f19e697.png/v1/fill/w_39,h_39,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/e316f544f9094143b9eac01f1f19e697.png" alt="Facebook">
-                </a>
-                <a href="https://twitter.com/IDACOficialRD?s=08" target="_blank" rel="noopener" aria-label="Twitter">
-                    <img src="https://static.wixstatic.com/media/9c4b521dd2404cd5a05ed6115f3a0dc8.png/v1/fill/w_39,h_39,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/9c4b521dd2404cd5a05ed6115f3a0dc8.png" alt="Twitter">
-                </a>
-                <a href="https://youtube.com/channel/UCOwNIHQkYG3ZBdP-euoLBJw" target="_blank" rel="noopener" aria-label="YouTube">
-                    <img src="https://static.wixstatic.com/media/a1b09fe8b7f04378a9fe076748ad4a6a.png/v1/fill/w_39,h_39,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/a1b09fe8b7f04378a9fe076748ad4a6a.png" alt="YouTube">
-                </a>
-                <a href="https://instagram.com/idacom.rd" target="_blank" rel="noopener" aria-label="Instagram">
-                    <img src="https://static.wixstatic.com/media/8d6893330740455c96d218258a458aa4.png/v1/fill/w_39,h_39,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/8d6893330740455c96d218258a458aa4.png" alt="Instagram">
-                </a>
-            </div>
+
+        <div class="about-stats">
+          <div class="stat-card card-glow">
+            <div class="stat-number" data-count="1983">1983</div>
+            <div class="stat-label">Año de Surgimiento</div>
+          </div>
+          <div class="stat-card card-glow">
+            <div class="stat-number" data-count="223">223</div>
+            <div class="stat-label">Proyectos Completados</div>
+          </div>
+          <div class="stat-card card-glow">
+            <div class="stat-number" data-count="70">70</div>
+            <div class="stat-label">Proveedores</div>
+          </div>
+          <div class="stat-card card-glow">
+            <div class="stat-number" data-count="192">192</div>
+            <div class="stat-label">Premios y Reconocimientos</div>
+          </div>
         </div>
-    </section>
+      </div>
 
-    <!-- About Section -->
-    <section id="nosotros" class="about">
-        <div class="container">
-            <div class="section-header">
-                <h2 class="section-title">NOSOTROS</h2>
-                <div class="section-divider"></div>
-            </div>
-            
-            <div class="about-content">
-                <div class="about-text">
-                    <p>El Instituto de Acción Comunitaria Inc. –IDAC– es una Organización No Gubernamental de servicio público a la comunidad, que orienta sus actividades hacia la superación de los factores que generan las condiciones de resagamiento y vulnerabilidad de comunidades suburbanas y rurales en la provincia de San Cristóbal, en bateyes azucareros y comunidades cañeras no bateyanas, así como en las provincias de San Pedro de Macorís y Monte Plata.</p>
-                    
-                    <p>El IDAC presta especial atención a las comunidades ubicadas en lugares marginados, con la finalidad de promover los mayores niveles en las condiciones y calidad de vida de hombres y mujeres para un pleno disfrute de un ambiente sano, acogedor y motivador.</p>
-                    
-                    <p>El IDAC fue fundado el 28 de julio del 1983. El 14 de noviembre del 1992, recibe el beneficio de la incorporación legal, en conformidad a la Ley 520 del 1920, mediante Decreto 325-92. Esta ley fue sustituida por la Ley 122-05 de fecha 3 de mayo del 2005.</p>
-                </div>
-                
-                <div class="about-stats">
-                    <div class="stat-card card-glow">
-                        <div class="stat-number" data-count="1983">1983</div>
-                        <div class="stat-label">Año de Surgimiento</div>
-                    </div>
-                    <div class="stat-card card-glow">
-                        <div class="stat-number" data-count="223">223</div>
-                        <div class="stat-label">Proyectos Completados</div>
-                    </div>
-                    <div class="stat-card card-glow">
-                        <div class="stat-number" data-count="70">70</div>
-                        <div class="stat-label">Proveedores</div>
-                    </div>
-                    <div class="stat-card card-glow">
-                        <div class="stat-number" data-count="192">192</div>
-                        <div class="stat-label">Premios y Reconocimientos</div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="mission-vision">
-                <div class="mv-card">
-                    <h3>Visión</h3>
-                    <p>Constituir un medio de acción social, comprometido con las luchas y desafíos de los sectores populares de nuestro pueblo; haciendo causa común en la decisión de procurar cambios significativos, para la construcción de una sociedad cuanto más justa e incluyente, más digna y más humana para todos.</p>
-                </div>
-                <div class="mv-card">
-                    <h3>Misión</h3>
-                    <p>Orientar y promover el desarrollo integral de las poblaciones comunitarias más empobrecidas y vulnerables de República Dominicana; mediante la implementación de planes, programas, proyectos y actividades, tendentes a transformar las condiciones y calidad de vida de las poblaciones meta del IDAC, en un marco de respeto mutuo y participación democrática y solidaria.</p>
-                </div>
-            </div>
+      <div class="mission-vision">
+        <div class="mv-card">
+          <h3>Visión</h3>
+          <p>
+            Constituir un medio de acción social, comprometido con las luchas
+            y desafíos de los sectores populares de nuestro pueblo; haciendo
+            causa común en la decisión de procurar cambios significativos,
+            para la construcción de una sociedad cuanto más justa e
+            incluyente, más digna y más humana para todos.
+          </p>
         </div>
-    </section>
-
-    <!-- Projects Section -->
-    <section id="proyectos" class="projects">
-        <div class="container">
-            <div class="section-header">
-                <h2 class="section-title">PROYECTOS</h2>
-            </div>
-            
-            <div class="projects-grid">
-                <div class="project-card premium-glow stagger-animation">
-                    <img src="https://static.wixstatic.com/media/ea7cef_e9d7de15fc3c4b7e91b0311db008827f~mv2.jpg/v1/fill/w_455,h_468,al_c,q_80,enc_avif,quality_auto/ea7cef_e9d7de15fc3c4b7e91b0311db008827f~mv2.jpg" alt="Entrega de viviendas">
-                    <div class="project-overlay">
-                        <h3>Entrega de viviendas (SPM)</h3>
-                    </div>
-                </div>
-                <div class="project-card premium-glow stagger-animation">
-                    <img src="https://static.wixstatic.com/media/ea7cef_c105d432c44b4953b2c8ed35b61a88a5~mv2.jpg/v1/fill/w_910,h_936,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/ea7cef_c105d432c44b4953b2c8ed35b61a88a5~mv2.jpg" alt="Limpiezas de playas">
-                    <div class="project-overlay">
-                        <h3>Limpiezas de playas (Samaná)</h3>
-                    </div>
-                </div>
-                <div class="project-card premium-glow stagger-animation">
-                    <img src="https://static.wixstatic.com/media/ea7cef_91a6ef6c68764822b4ab2ffb2166fecc~mv2.jpg/v1/fill/w_720,h_741,al_c,q_85,enc_avif,quality_auto/ea7cef_91a6ef6c68764822b4ab2ffb2166fecc~mv2.jpg" alt="Jornada de reforestación">
-                    <div class="project-overlay">
-                        <h3>Jornada de reforestación</h3>
-                    </div>
-                </div>
-                <div class="project-card premium-glow stagger-animation">
-                    <img src="https://static.wixstatic.com/media/ea7cef_422e11aa11f04d2aa478a01322c2530d~mv2.jpg/v1/fill/w_910,h_936,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/ea7cef_422e11aa11f04d2aa478a01322c2530d~mv2.jpg" alt="Plantación de arrecifes">
-                    <div class="project-overlay">
-                        <h3>Plantación de arrecifes</h3>
-                    </div>
-                </div>
-            </div>
+        <div class="mv-card">
+          <h3>Misión</h3>
+          <p>
+            Orientar y promover el desarrollo integral de las poblaciones
+            comunitarias más empobrecidas y vulnerables de República
+            Dominicana; mediante la implementación de planes, programas,
+            proyectos y actividades, tendentes a transformar las condiciones y
+            calidad de vida de las poblaciones meta del IDAC, en un marco de
+            respeto mutuo y participación democrática y solidaria.
+          </p>
         </div>
-    </section>
+      </div>
+    </div>
+  </section>
 
-    <!-- News Section -->
-    <section id="noticias" class="news">
-        <div class="container">
-            <div class="section-header">
-                <h2 class="section-title">NOTICIAS</h2>
-            </div>
-            
-            <div class="news-grid">
-                <article class="news-card featured">
-                    <div class="news-image">
-                        <img src="https://static.wixstatic.com/media/ea7cef_7cd154eb224a41169dde1530fb97b008~mv2.jpeg/v1/fill/w_180,h_180,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/WhatsApp%20Image%202025-07-08%20at%2010_02_26%20AM.jpeg" alt="Reunión Zoom">
-                    </div>
-                    <div class="news-content">
-                        <h3>Invitando a una reunión de Zoom programada. Enfocado en la comunidad y los hogares</h3>
-                        <p>Instituto de Acción Comunitaria IDACOM le está invitando a una reunión de Zoom programada. Tema: Reciclaje: Enfocado en la comunidad y...</p>
-                        <div class="news-meta">
-                            <span class="author">idacom1983</span>
-                            <span class="date">8 Jul 2025</span>
-                        </div>
-                    </div>
-                </article>
+  <!-- Projects Section -->
+  <section id="proyectos" class="projects">
+    <div class="container">
+      <div class="section-header">
+        <h2 class="section-title">PROYECTOS</h2>
+      </div>
 
-                <article class="news-card">
-                    <div class="news-image">
-                        <img src="https://static.wixstatic.com/media/ea7cef_32c9f889d9c34dab93f1dd5969461741~mv2.jpg/v1/fill/w_168,h_300,fp_0.50_0.50,q_90,enc_avif,quality_auto/ea7cef_32c9f889d9c34dab93f1dd5969461741~mv2.jpg" alt="Caso niño desaparecido">
-                    </div>
-                    <div class="news-content">
-                        <h3>¿Qué se sabe hasta ahora sobre el caso del niño desaparecido en Jarabacoa?</h3>
-                        <p>Las autoridades han reconstruido la escena donde Roldanis Calderón, de tres años, fue visto por última vez...</p>
-                        <div class="news-meta">
-                            <span class="author">idacom1983</span>
-                            <span class="date">3 Abr 2025</span>
-                        </div>
-                    </div>
-                </article>
-
-                <article class="news-card">
-                    <div class="news-content">
-                        <h3>DETENGAMOS YA LA VIOLENCIA DE GÉNERO E INTRAFAMILIAR</h3>
-                        <p>Como una verdadera epidemia que amenaza la vida de la mujer dominicana califica hoy el Instituto de Acción Comunitaria IDACOM la...</p>
-                        <div class="news-meta">
-                            <span class="author">idacom1983</span>
-                            <span class="date">3 Abr 2025</span>
-                        </div>
-                    </div>
-                </article>
-            </div>
+      <div class="projects-grid">
+        <div class="project-card premium-glow stagger-animation">
+          <img
+            src="https://static.wixstatic.com/media/ea7cef_e9d7de15fc3c4b7e91b0311db008827f~mv2.jpg/v1/fill/w_455,h_468,al_c,q_80,enc_avif,quality_auto/ea7cef_e9d7de15fc3c4b7e91b0311db008827f~mv2.jpg"
+            alt="Entrega de viviendas"
+          />
+          <div class="project-overlay">
+            <h3>Entrega de viviendas (SPM)</h3>
+          </div>
         </div>
-    </section>
-
-    <!-- Videos Section -->
-    <section class="videos">
-        <div class="container">
-            <div class="section-header">
-                <h2 class="section-title">VIDEOS DESTACADOS</h2>
-            </div>
-            
-            <div class="videos-grid">
-                <div class="video-card">
-                    <iframe src="https://www.youtube.com/embed/_C0b-VwUEw8" title="Género, Prevención y Educación" allowfullscreen></iframe>
-                    <h4>Género, Prevención y Educación</h4>
-                </div>
-                <div class="video-card">
-                    <iframe src="https://www.youtube.com/embed/N6qscSpO2ic" title="Instituto de Acción Comunitaria inicia proyecto" allowfullscreen></iframe>
-                    <h4>Instituto de Acción Comunitaria inicia proyecto de mejora</h4>
-                </div>
-                <div class="video-card">
-                    <iframe src="https://www.youtube.com/embed/Yc0IPKmbg5A" title="Proyectos IDACOM" allowfullscreen></iframe>
-                    <h4>Vídeo explicativo sobre los Proyectos que ejecuta IDACOM</h4>
-                </div>
-            </div>
+        <div class="project-card premium-glow stagger-animation">
+          <img
+            src="https://static.wixstatic.com/media/ea7cef_c105d432c44b4953b2c8ed35b61a88a5~mv2.jpg/v1/fill/w_910,h_936,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/ea7cef_c105d432c44b4953b2c8ed35b61a88a5~mv2.jpg"
+            alt="Limpiezas de playas"
+          />
+          <div class="project-overlay">
+            <h3>Limpiezas de playas (Samaná)</h3>
+          </div>
         </div>
-    </section>
-
-    <!-- Gallery Section -->
-    <section id="galeria" class="gallery">
-        <div class="container">
-            <div class="section-header">
-                <h2 class="section-title">GALERÍA</h2>
-            </div>
-            
-            <div class="gallery-grid">
-                <div class="gallery-item">
-                    <img src="https://static.wixstatic.com/media/ea7cef_6774acc101aa4ebf934550b99f1700f1~mv2.jpg/v1/fill/w_300,h_227,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/Rostro%20de%20Mujer%20(Boletin).jpg" alt="Entrega de viviendas">
-                    <div class="gallery-overlay">
-                        <h4>ENTREGA DE VIVIENDAS</h4>
-                    </div>
-                </div>
-                <div class="gallery-item">
-                    <img src="https://static.wixstatic.com/media/ea7cef_f0b1ca9bed264700badf7395acb21d48~mv2.jpg/v1/fill/w_300,h_227,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/IMG-20201114-WA0007.jpg" alt="Taller masculinidad">
-                    <div class="gallery-overlay">
-                        <h4>TALLER MASCULINIDAD</h4>
-                    </div>
-                </div>
-                <div class="gallery-item">
-                    <img src="https://static.wixstatic.com/media/ea7cef_21afa4210f62401ba3b74a03f6ea4f7c~mv2.jpg/v1/fill/w_300,h_227,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/IMG-20201121-WA0005.jpg" alt="Tanque en construcción">
-                    <div class="gallery-overlay">
-                        <h4>TANQUE EN CONSTRUCCIÓN</h4>
-                    </div>
-                </div>
-            </div>
+        <div class="project-card premium-glow stagger-animation">
+          <img
+            src="https://static.wixstatic.com/media/ea7cef_91a6ef6c68764822b4ab2ffb2166fecc~mv2.jpg/v1/fill/w_720,h_741,al_c,q_85,enc_avif,quality_auto/ea7cef_91a6ef6c68764822b4ab2ffb2166fecc~mv2.jpg"
+            alt="Jornada de reforestación"
+          />
+          <div class="project-overlay">
+            <h3>Jornada de reforestación</h3>
+          </div>
         </div>
-    </section>
-
-    <!-- Financiers Section -->
-    <section class="financiers">
-        <div class="container">
-            <div class="section-header">
-                <h2 class="section-title">FINANCIADORES</h2>
-            </div>
-            
-            <div class="financiers-grid">
-                <div class="financier-card">
-                    <h4>Agencia Asturiana de Cooperación</h4>
-                    <a href="https://www.cooperacionasturiana.com/" target="_blank">cooperacionasturiana.com</a>
-                </div>
-                <div class="financier-card">
-                    <h4>Agencia Española de Cooperación Internacional para el Desarrollo (AECID)</h4>
-                    <a href="https://www.aecid.es/ES" target="_blank">aecid.es</a>
-                </div>
-                <div class="financier-card">
-                    <h4>Unión Europea</h4>
-                    <a href="https://europa.eu/european-union/index_es" target="_blank">europa.eu</a>
-                </div>
-                <div class="financier-card">
-                    <h4>Xunta de Galicia</h4>
-                    <a href="https://www.xunta.gal/portada" target="_blank">xunta.gal</a>
-                </div>
-            </div>
+        <div class="project-card premium-glow stagger-animation">
+          <img
+            src="https://static.wixstatic.com/media/ea7cef_422e11aa11f04d2aa478a01322c2530d~mv2.jpg/v1/fill/w_910,h_936,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/ea7cef_422e11aa11f04d2aa478a01322c2530d~mv2.jpg"
+            alt="Plantación de arrecifes"
+          />
+          <div class="project-overlay">
+            <h3>Plantación de arrecifes</h3>
+          </div>
         </div>
-    </section>
+      </div>
+    </div>
+  </section>
 
-    <!-- Contact Section -->
-    <section id="contacto" class="contact">
-        <div class="container">
-            <div class="section-header">
-                <h2 class="section-title">CONTACTO</h2>
-                <div class="section-divider"></div>
+  <!-- News Section -->
+  <section id="noticias" class="news">
+    <div class="container">
+      <div class="section-header">
+        <h2 class="section-title">NOTICIAS</h2>
+      </div>
+
+      <div class="news-grid">
+        <article class="news-card featured">
+          <div class="news-image">
+            <img
+              src="https://static.wixstatic.com/media/ea7cef_7cd154eb224a41169dde1530fb97b008~mv2.jpeg/v1/fill/w_180,h_180,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/WhatsApp%20Image%202025-07-08%20at%2010_02_26%20AM.jpeg"
+              alt="Reunión Zoom"
+            />
+          </div>
+          <div class="news-content">
+            <h3>
+              Invitando a una reunión de Zoom programada. Enfocado en la
+              comunidad y los hogares
+            </h3>
+            <p>
+              Instituto de Acción Comunitaria IDACOM le está invitando a una
+              reunión de Zoom programada. Tema: Reciclaje: Enfocado en la
+              comunidad y...
+            </p>
+            <div class="news-meta">
+              <span class="author">idacom1983</span>
+              <span class="date">8 Jul 2025</span>
             </div>
-            
-            <div class="contact-content">
-                <div class="contact-info">
-                    <h3>Oficina Principal</h3>
-                    <div class="contact-item">
-                        <svg class="contact-icon" viewBox="0 0 24 24" fill="currentColor">
-                            <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/>
-                        </svg>
-                        <span>C\ Benigno Filomeno de Rojas, #313, zona Universitaria, Distrito Nacional.</span>
-                    </div>
-                    <div class="contact-item">
-                        <svg class="contact-icon" viewBox="0 0 24 24" fill="currentColor">
-                            <path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/>
-                        </svg>
-                        <a href="mailto:idacom1983@hotmail.com">idacom1983@hotmail.com</a>
-                    </div>
-                    <div class="contact-item">
-                        <svg class="contact-icon" viewBox="0 0 24 24" fill="currentColor">
-                            <path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/>
-                        </svg>
-                        <span>Teléfono: 809-238-5843</span>
-                    </div>
-                </div>
-                
-                <form class="contact-form" id="contactForm">
-                    <h3>Preguntas</h3>
-                    <p>Para todo tipo de preguntas, comentarios e inquietudes; por favor llámanos: 809-238-5843, o completa el formulario a continuación</p>
-                    
-                    <div class="form-row">
-                        <div class="form-group">
-                            <label for="nombre">Nombre</label>
-                            <input type="text" id="nombre" name="nombre" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="apellido">Apellido</label>
-                            <input type="text" id="apellido" name="apellido" required>
-                        </div>
-                    </div>
-                    
-                    <div class="form-row">
-                        <div class="form-group">
-                            <label for="email">Email</label>
-                            <input type="email" id="email" name="email" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="telefono">Teléfono</label>
-                            <input type="tel" id="telefono" name="telefono">
-                        </div>
-                    </div>
-                    
-                    <div class="form-group">
-                        <label for="mensaje">Déjanos un mensaje...</label>
-                        <textarea id="mensaje" name="mensaje" rows="5" required></textarea>
-                    </div>
-                    
-                    <button type="submit" class="btn btn-primary magnetic-btn neon-glow">Enviar</button>
-                    <div id="form-success" class="form-success hidden">¡Gracias por tu mensaje!</div>
-                </form>
+          </div>
+        </article>
+
+        <article class="news-card">
+          <div class="news-image">
+            <img
+              src="https://static.wixstatic.com/media/ea7cef_32c9f889d9c34dab93f1dd5969461741~mv2.jpg/v1/fill/w_168,h_300,fp_0.50_0.50,q_90,enc_avif,quality_auto/ea7cef_32c9f889d9c34dab93f1dd5969461741~mv2.jpg"
+              alt="Caso niño desaparecido"
+            />
+          </div>
+          <div class="news-content">
+            <h3>
+              ¿Qué se sabe hasta ahora sobre el caso del niño desaparecido en
+              Jarabacoa?
+            </h3>
+            <p>
+              Las autoridades han reconstruido la escena donde Roldanis
+              Calderón, de tres años, fue visto por última vez...
+            </p>
+            <div class="news-meta">
+              <span class="author">idacom1983</span>
+              <span class="date">3 Abr 2025</span>
             </div>
+          </div>
+        </article>
+
+        <article class="news-card">
+          <div class="news-content">
+            <h3>DETENGAMOS YA LA VIOLENCIA DE GÉNERO E INTRAFAMILIAR</h3>
+            <p>
+              Como una verdadera epidemia que amenaza la vida de la mujer
+              dominicana califica hoy el Instituto de Acción Comunitaria
+              IDACOM la...
+            </p>
+            <div class="news-meta">
+              <span class="author">idacom1983</span>
+              <span class="date">3 Abr 2025</span>
+            </div>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- Videos Section -->
+  <section class="videos">
+    <div class="container">
+      <div class="section-header">
+        <h2 class="section-title">VIDEOS DESTACADOS</h2>
+      </div>
+
+      <div class="video-slider-container">
+        <button class="video-slider-btn prev" aria-label="Video anterior">
+          <svg viewBox="0 0 24 24" fill="currentColor">
+            <path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z"/>
+          </svg>
+        </button>
+
+        <div class="videos-slider">
+          <div class="video-card">
+            <iframe
+              src="https://www.youtube.com/embed/_C0b-VwUEw8"
+              title="Género, Prevención y Educación"
+              allowfullscreen></iframe>
+            <h4>Género, Prevención y Educación</h4>
+          </div>
+          <div class="video-card">
+            <iframe
+              src="https://www.youtube.com/embed/N6qscSpO2ic"
+              title="Instituto de Acción Comunitaria inicia proyecto"
+              allowfullscreen></iframe>
+            <h4>Instituto de Acción Comunitaria inicia proyecto de mejora</h4>
+          </div>
+          <div class="video-card">
+            <iframe
+              src="https://www.youtube.com/embed/Yc0IPKmbg5A"
+              title="Proyectos IDACOM"
+              allowfullscreen></iframe>
+            <h4>Vídeo explicativo sobre los Proyectos que ejecuta IDACOM</h4>
+          </div>
         </div>
-    </section>
 
-    <!-- Footer -->
-    <footer class="footer">
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-brand">
-                    <img src="https://static.wixstatic.com/media/ea7cef_c913d06ee6d2465ea92a4f508e2c3153~mv2.png/v1/fill/w_141,h_110,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/LOGO%201vv.png" alt="IDACOM Logo" class="footer-logo">
-                    <p>Instituto de Acción Comunitaria Inc.</p>
-                </div>
-                
-                <div class="footer-links">
-                    <h4>Enlaces</h4>
-                    <ul>
-                        <li><a href="#nosotros">Nosotros</a></li>
-                        <li><a href="#proyectos">Proyectos</a></li>
-                        <li><a href="#noticias">Noticias</a></li>
-                        <li><a href="#contacto">Contacto</a></li>
-                    </ul>
-                </div>
-                
-                <div class="footer-contact">
-                    <h4>Contacto</h4>
-                    <p>809-238-5843</p>
-                    <p>idacom1983@hotmail.com</p>
-                </div>
-                
-                <div class="footer-social">
-                    <h4>Síguenos</h4>
-                    <div class="social-icons">
-                        <a href="https://www.facebook.com/profile.php?id=100008531234808" target="_blank" rel="noopener" aria-label="Facebook">
-                            <svg viewBox="0 0 24 24" fill="currentColor">
-                                <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
-                            </svg>
-                        </a>
-                        <a href="https://twitter.com/IDACOficialRD?s=08" target="_blank" rel="noopener" aria-label="Twitter">
-                            <svg viewBox="0 0 24 24" fill="currentColor">
-                                <path d="M23.953 4.57a10 10 0 01-2.825.775 4.958 4.958 0 002.163-2.723c-.951.555-2.005.959-3.127 1.184a4.92 4.92 0 00-8.384 4.482C7.69 8.095 4.067 6.13 1.64 3.162a4.822 4.822 0 00-.666 2.475c0 1.71.87 3.213 2.188 4.096a4.904 4.904 0 01-2.228-.616v.06a4.923 4.923 0 003.946 4.827 4.996 4.996 0 01-2.212.085 4.936 4.936 0 004.604 3.417 9.867 9.867 0 01-6.102 2.105c-.39 0-.779-.023-1.17-.067a13.995 13.995 0 007.557 2.209c9.053 0 13.998-7.496 13.998-13.985 0-.21 0-.42-.015-.63A9.935 9.935 0 0024 4.59z"/>
-                            </svg>
-                        </a>
-                        <a href="https://youtube.com/channel/UCOwNIHQkYG3ZBdP-euoLBJw" target="_blank" rel="noopener" aria-label="YouTube">
-                            <svg viewBox="0 0 24 24" fill="currentColor">
-                                <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
-                            </svg>
-                        </a>
-                        <a href="https://instagram.com/idacom.rd" target="_blank" rel="noopener" aria-label="Instagram">
-                            <svg viewBox="0 0 24 24" fill="currentColor">
-                                <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
-                            </svg>
-                        </a>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="footer-bottom">
-                <p>&copy; 2025 Instituto de Acción Comunitaria Inc. Todos los derechos reservados.</p>
-            </div>
+        <button class="video-slider-btn next" aria-label="Video siguiente">
+          <svg viewBox="0 0 24 24" fill="currentColor">
+            <path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"/>
+          </svg>
+        </button>
+      </div>
+
+      <div class="video-slider-dots"></div>
+    </div>
+  </section>
+
+  <!-- Gallery Section -->
+  <section id="galeria" class="gallery">
+    <div class="container">
+      <div class="section-header">
+        <h2 class="section-title">GALERÍA</h2>
+      </div>
+
+      <div class="gallery-grid">
+        <div class="gallery-item">
+          <img
+            src="https://static.wixstatic.com/media/ea7cef_6774acc101aa4ebf934550b99f1700f1~mv2.jpg/v1/fill/w_300,h_227,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/Rostro%20de%20Mujer%20(Boletin).jpg"
+            alt="Entrega de viviendas"
+          />
+          <div class="gallery-overlay">
+            <h4>ENTREGA DE VIVIENDAS</h4>
+          </div>
         </div>
-    </footer>
+        <div class="gallery-item">
+          <img
+            src="https://static.wixstatic.com/media/ea7cef_f0b1ca9bed264700badf7395acb21d48~mv2.jpg/v1/fill/w_300,h_227,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/IMG-20201114-WA0007.jpg"
+            alt="Taller masculinidad"
+          />
+          <div class="gallery-overlay">
+            <h4>TALLER MASCULINIDAD</h4>
+          </div>
+        </div>
+        <div class="gallery-item">
+          <img
+            src="https://static.wixstatic.com/media/ea7cef_21afa4210f62401ba3b74a03f6ea4f7c~mv2.jpg/v1/fill/w_300,h_227,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/IMG-20201121-WA0005.jpg"
+            alt="Tanque en construcción"
+          />
+          <div class="gallery-overlay">
+            <h4>TANQUE EN CONSTRUCCIÓN</h4>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
 
-    <!-- Floating Action Button -->
-    <button class="fab" onclick="window.scrollTo({top: 0, behavior: 'smooth'})" title="Ir arriba">
-        <svg viewBox="0 0 24 24" fill="currentColor">
-            <path d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"/>
-        </svg>
-    </button>
+  <!-- Financiers Section -->
+  <section class="financiers">
+    <div class="container">
+      <div class="section-header">
+        <h2 class="section-title">FINANCIADORES</h2>
+      </div>
 
-    <!-- Main script -->
-    <script src="/script.js" is:inline></script>
-</body>
-</html>
+      <div class="financiers-grid">
+        <div class="financier-card">
+          <h4>Agencia Asturiana de Cooperación</h4>
+          <a href="https://www.cooperacionasturiana.com/" target="_blank"
+            >cooperacionasturiana.com</a
+          >
+        </div>
+        <div class="financier-card">
+          <h4>
+            Agencia Española de Cooperación Internacional para el Desarrollo
+            (AECID)
+          </h4>
+          <a href="https://www.aecid.es/ES" target="_blank">aecid.es</a>
+        </div>
+        <div class="financier-card">
+          <h4>Unión Europea</h4>
+          <a href="https://europa.eu/european-union/index_es" target="_blank"
+            >europa.eu</a
+          >
+        </div>
+        <div class="financier-card">
+          <h4>Xunta de Galicia</h4>
+          <a href="https://www.xunta.gal/portada" target="_blank">xunta.gal</a
+          >
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact Section -->
+  <section id="contacto" class="contact">
+    <div class="container">
+      <div class="section-header">
+        <h2 class="section-title">CONTACTO</h2>
+        <div class="section-divider"></div>
+      </div>
+
+      <div class="contact-content">
+        <div class="contact-info">
+          <h3>Oficina Principal</h3>
+          <div class="contact-item">
+            <svg class="contact-icon" viewBox="0 0 24 24" fill="currentColor">
+              <path
+                d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"
+              ></path>
+            </svg>
+            <span
+              >C\ Benigno Filomeno de Rojas, #313, zona Universitaria,
+              Distrito Nacional.</span
+            >
+          </div>
+          <div class="contact-item">
+            <svg class="contact-icon" viewBox="0 0 24 24" fill="currentColor">
+              <path
+                d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"
+              ></path>
+            </svg>
+            <a href="mailto:idacom1983@hotmail.com">idacom1983@hotmail.com</a>
+          </div>
+          <div class="contact-item">
+            <svg class="contact-icon" viewBox="0 0 24 24" fill="currentColor">
+              <path
+                d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"
+              ></path>
+            </svg>
+            <span>Teléfono: 809-238-5843</span>
+          </div>
+        </div>
+
+        <form class="contact-form" id="contactForm">
+          <h3>Preguntas</h3>
+          <p>
+            Para todo tipo de preguntas, comentarios e inquietudes; por favor
+            llámanos: 809-238-5843, o completa el formulario a continuación
+          </p>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label for="nombre">Nombre</label>
+              <input type="text" id="nombre" name="nombre" required />
+            </div>
+            <div class="form-group">
+              <label for="apellido">Apellido</label>
+              <input type="text" id="apellido" name="apellido" required />
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label for="email">Email</label>
+              <input type="email" id="email" name="email" required />
+            </div>
+            <div class="form-group">
+              <label for="telefono">Teléfono</label>
+              <input type="tel" id="telefono" name="telefono" />
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="mensaje">Déjanos un mensaje...</label>
+            <textarea id="mensaje" name="mensaje" rows="5" required
+            ></textarea>
+          </div>
+
+          <button type="submit" class="btn btn-primary magnetic-btn neon-glow"
+            >Enviar</button
+          >
+          <div id="form-success" class="form-success hidden">
+            ¡Gracias por tu mensaje!
+          </div>
+        </form>
+      </div>
+    </div>
+  </section>
+</Layout>

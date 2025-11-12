@@ -1,0 +1,525 @@
+---
+import Layout from "../layouts/Layout.astro";
+---
+
+<Layout
+  title="Galería - IDACOM"
+  description="Galería de imágenes de los proyectos y actividades del Instituto de Acción Comunitaria Inc. (IDAC) en República Dominicana"
+>
+  <style is:global>
+        /* Gallery Specific Styles */
+        .gallery-hero {
+            min-height: 40vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: var(--primary-gradient);
+            position: relative;
+            overflow: hidden;
+            margin-top: 80px;
+        }
+        
+        .gallery-hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('https://static.wixstatic.com/media/11062b_24693744a2114dd68e6808179cf6a1ca~mv2.jpg/v1/fill/w_1920,h_1080,al_c,q_90,usm_0.66_1.00_0.01,enc_avif,quality_auto/11062b_24693744a2114dd68e6808179cf6a1ca~mv2.jpg') center/cover;
+            opacity: 0.3;
+            filter: blur(2px);
+        }
+        
+        .gallery-hero-content {
+            position: relative;
+            z-index: 1;
+            text-align: center;
+            color: white;
+        }
+        
+        .gallery-hero h1 {
+            font-size: 3.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            text-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+        }
+        
+        .gallery-section {
+            padding: 4rem 0;
+            position: relative;
+        }
+        
+        .gallery-section:nth-child(even) {
+            background: rgba(248, 249, 250, 0.5);
+        }
+        
+        .gallery-category-title {
+            font-size: 1.8rem;
+            font-weight: 600;
+            color: var(--text-color);
+            margin-bottom: 2rem;
+            text-align: center;
+            position: relative;
+            padding-bottom: 1rem;
+        }
+        
+        .gallery-category-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 3px;
+            background: var(--primary-gradient);
+            border-radius: 2px;
+        }
+        
+        .gallery-masonry {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+        
+        .gallery-item {
+            position: relative;
+            overflow: hidden;
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            cursor: pointer;
+            background: white;
+            height: 300px;
+        }
+        
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: var(--transition);
+        }
+        
+        .gallery-item:hover {
+            transform: translateY(-8px);
+            box-shadow: var(--shadow-lg);
+        }
+        
+        .gallery-item:hover img {
+            transform: scale(1.1);
+        }
+        
+        .gallery-item-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(to top, rgba(0, 0, 0, 0.8), transparent);
+            color: white;
+            padding: 1.5rem;
+            transform: translateY(100%);
+            transition: var(--transition);
+        }
+        
+        .gallery-item:hover .gallery-item-overlay {
+            transform: translateY(0);
+        }
+        
+        .slider-gallery {
+            position: relative;
+            margin-top: 2rem;
+        }
+        
+        .slider-container {
+            display: flex;
+            gap: 1rem;
+            overflow-x: auto;
+            scroll-snap-type: x mandatory;
+            scrollbar-width: thin;
+            scrollbar-color: var(--primary-color) #e9ecef;
+            padding-bottom: 1rem;
+        }
+        
+        .slider-container::-webkit-scrollbar {
+            height: 8px;
+        }
+        
+        .slider-container::-webkit-scrollbar-track {
+            background: #e9ecef;
+            border-radius: 4px;
+        }
+        
+        .slider-container::-webkit-scrollbar-thumb {
+            background: var(--primary-gradient);
+            border-radius: 4px;
+        }
+        
+        .slider-item {
+            flex: 0 0 300px;
+            scroll-snap-align: start;
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+        }
+        
+        .slider-item:hover {
+            transform: scale(1.05);
+            box-shadow: var(--shadow-lg);
+        }
+        
+        .slider-item img {
+            width: 100%;
+            height: 300px;
+            object-fit: cover;
+        }
+        
+        /* Modal Lightbox */
+        .lightbox {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.95);
+            z-index: 10000;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem;
+        }
+        
+        .lightbox.active {
+            display: flex;
+        }
+        
+        .lightbox-content {
+            max-width: 90vw;
+            max-height: 90vh;
+            position: relative;
+        }
+        
+        .lightbox-content img {
+            max-width: 100%;
+            max-height: 90vh;
+            object-fit: contain;
+            border-radius: var(--border-radius);
+        }
+        
+        .lightbox-close {
+            position: absolute;
+            top: -40px;
+            right: 0;
+            background: white;
+            color: var(--dark-color);
+            border: none;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            transition: var(--transition);
+        }
+        
+        .lightbox-close:hover {
+            background: var(--primary-color);
+            color: white;
+            transform: rotate(90deg);
+        }
+        
+        @media (max-width: 768px) {
+            .gallery-hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .gallery-masonry {
+                grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+                gap: 1rem;
+            }
+            
+            .slider-item {
+                flex: 0 0 250px;
+            }
+        }
+  </style>
+
+  <!-- Gallery Hero -->
+    <section class="gallery-hero">
+        <div class="gallery-hero-content">
+            <h1>GALERÍA</h1>
+            <p style="font-size: 1.2rem; opacity: 0.9;">Momentos destacados de nuestros proyectos</p>
+        </div>
+    </section>
+
+    <!-- Gallery Section: Entrega de viviendas -->
+    <section class="gallery-section">
+        <div class="container">
+            <h2 class="gallery-category-title">Entrega de viviendas<br>(Prov. San Pedro de Macorís)</h2>
+            
+            <div class="slider-gallery">
+                <div class="slider-container">
+                    <div class="slider-item">
+                        <img src="https://static.wixstatic.com/media/ea7cef_7088dbbacb414a708ea02e3d37d2460d~mv2.jpeg/v1/fill/w_300,h_300,al_c,q_80,enc_avif,quality_auto/ea7cef_7088dbbacb414a708ea02e3d37d2460d~mv2.jpeg" alt="Entrega de viviendas 1">
+                    </div>
+                    <div class="slider-item">
+                        <img src="https://static.wixstatic.com/media/ea7cef_cd26a63f329841b69f5aae33c2f662b5~mv2.jpg/v1/fill/w_300,h_300,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/ea7cef_cd26a63f329841b69f5aae33c2f662b5~mv2.jpg" alt="Entrega de viviendas 2">
+                    </div>
+                    <div class="slider-item">
+                        <img src="https://static.wixstatic.com/media/ea7cef_8e36838bad874d04bdb2b1fdcdf94c2c~mv2.jpg/v1/fill/w_300,h_300,al_c,q_80,enc_avif,quality_auto/ea7cef_8e36838bad874d04bdb2b1fdcdf94c2c~mv2.jpg" alt="Entrega de viviendas 3">
+                    </div>
+                    <div class="slider-item">
+                        <img src="https://static.wixstatic.com/media/ea7cef_009150662cc44aca857f57bcb25bd7e3~mv2.jpg/v1/fill/w_300,h_300,al_c,q_80,enc_avif,quality_auto/ea7cef_009150662cc44aca857f57bcb25bd7e3~mv2.jpg" alt="Entrega de viviendas 4">
+                    </div>
+                    <div class="slider-item">
+                        <img src="https://static.wixstatic.com/media/ea7cef_1d60514a193847988ce53b810b14420e~mv2.jpg/v1/fill/w_300,h_300,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/ea7cef_1d60514a193847988ce53b810b14420e~mv2.jpg" alt="Entrega de viviendas 5">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Gallery Section: Jornadas de entregas de kits alimenticios (San Cristóbal) -->
+    <section class="gallery-section">
+        <div class="container">
+            <h2 class="gallery-category-title">Jornadas de entregas de kits alimenticios<br>(Prov. San Cristóbal)</h2>
+            
+            <div class="gallery-masonry">
+                <div class="gallery-item">
+                    <img src="https://static.wixstatic.com/media/ea7cef_78b357513f474573bd89d38b74a34600~mv2.jpg/v1/fill/w_400,h_300,al_c,q_75,enc_avif,quality_auto/ea7cef_78b357513f474573bd89d38b74a34600~mv2.jpg" alt="Kits alimenticios 1">
+                    <div class="gallery-item-overlay">
+                        <h4>Distribución de kits alimenticios</h4>
+                    </div>
+                </div>
+                <div class="gallery-item">
+                    <img src="https://static.wixstatic.com/media/ea7cef_7a34c7be1d504b93b60e5c16fa98d2f5~mv2.jpg/v1/fill/w_400,h_300,al_c,q_75,enc_avif,quality_auto/ea7cef_7a34c7be1d504b93b60e5c16fa98d2f5~mv2.jpg" alt="Kits alimenticios 2">
+                    <div class="gallery-item-overlay">
+                        <h4>Entrega a familias necesitadas</h4>
+                    </div>
+                </div>
+                <div class="gallery-item">
+                    <img src="https://static.wixstatic.com/media/ea7cef_c48411e15eb6431a93d4031378c9ba9e~mv2.jpg/v1/fill/w_400,h_300,al_c,q_75,enc_avif,quality_auto/ea7cef_c48411e15eb6431a93d4031378c9ba9e~mv2.jpg" alt="Kits alimenticios 3">
+                    <div class="gallery-item-overlay">
+                        <h4>Apoyo comunitario</h4>
+                    </div>
+                </div>
+                <div class="gallery-item">
+                    <img src="https://static.wixstatic.com/media/ea7cef_5505aabe291048ae9c9ad2cecfd87991~mv2.jpg/v1/fill/w_400,h_300,al_c,q_75,enc_avif,quality_auto/ea7cef_5505aabe291048ae9c9ad2cecfd87991~mv2.jpg" alt="Kits alimenticios 4">
+                    <div class="gallery-item-overlay">
+                        <h4>Ayuda solidaria</h4>
+                    </div>
+                </div>
+                <div class="gallery-item">
+                    <img src="https://static.wixstatic.com/media/ea7cef_7d9f699eaf7f4962b24bb3a71d4ac644~mv2.jpg/v1/fill/w_400,h_300,al_c,q_75,enc_avif,quality_auto/ea7cef_7d9f699eaf7f4962b24bb3a71d4ac644~mv2.jpg" alt="Kits alimenticios 5">
+                    <div class="gallery-item-overlay">
+                        <h4>Jornada comunitaria</h4>
+                    </div>
+                </div>
+                <div class="gallery-item">
+                    <img src="https://static.wixstatic.com/media/ea7cef_05c1a0e9174e4f99bd1efb569b79b69e~mv2.jpg/v1/fill/w_400,h_300,al_c,q_75,enc_avif,quality_auto/ea7cef_05c1a0e9174e4f99bd1efb569b79b69e~mv2.jpg" alt="Kits alimenticios 6">
+                    <div class="gallery-item-overlay">
+                        <h4>Asistencia alimentaria</h4>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Gallery Section: Kits de higiene (San Cristóbal) -->
+    <section class="gallery-section">
+        <div class="container">
+            <h2 class="gallery-category-title">Entregas de kits de higiene y dignidad de la mujer<br>(Prov. San Cristóbal)</h2>
+            
+            <div class="slider-gallery">
+                <div class="slider-container">
+                    <div class="slider-item">
+                        <img src="https://static.wixstatic.com/media/ea7cef_6a73a25c91c047ec816678b4f556a858~mv2.jpg/v1/fill/w_300,h_300,al_c,q_75,enc_avif,quality_auto/ea7cef_6a73a25c91c047ec816678b4f556a858~mv2.jpg" alt="Kits de higiene 1">
+                    </div>
+                    <div class="slider-item">
+                        <img src="https://static.wixstatic.com/media/ea7cef_2be981b1e0f7412ab834ab0ab3dd3cca~mv2.jpg/v1/fill/w_300,h_300,al_c,q_75,enc_avif,quality_auto/ea7cef_2be981b1e0f7412ab834ab0ab3dd3cca~mv2.jpg" alt="Kits de higiene 2">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Gallery Section: Jornadas San Pedro de Macorís -->
+    <section class="gallery-section">
+        <div class="container">
+            <h2 class="gallery-category-title">Jornadas de entregas de kits alimenticios<br>(Prov. San Pedro de Macorís)</h2>
+            
+            <div class="gallery-masonry">
+                <div class="gallery-item">
+                    <img src="https://static.wixstatic.com/media/ea7cef_da0738d23d9747848a727c4447822ad6~mv2.jpeg/v1/fill/w_400,h_300,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/ea7cef_da0738d23d9747848a727c4447822ad6~mv2.jpeg" alt="Jornada SPM 1">
+                </div>
+                <div class="gallery-item">
+                    <img src="https://static.wixstatic.com/media/ea7cef_19a26653651442fda9f05c9266af1c04~mv2.jpeg/v1/fill/w_400,h_300,al_c,q_80,enc_avif,quality_auto/ea7cef_19a26653651442fda9f05c9266af1c04~mv2.jpeg" alt="Jornada SPM 2">
+                </div>
+                <div class="gallery-item">
+                    <img src="https://static.wixstatic.com/media/ea7cef_77983c72b75d4d5e918faf375b7a76e0~mv2.jpeg/v1/fill/w_400,h_300,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/ea7cef_77983c72b75d4d5e918faf375b7a76e0~mv2.jpeg" alt="Jornada SPM 3">
+                </div>
+                <div class="gallery-item">
+                    <img src="https://static.wixstatic.com/media/ea7cef_2c89d339ad4f48f0be25dc9ab465de53~mv2.jpeg/v1/fill/w_400,h_300,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/ea7cef_2c89d339ad4f48f0be25dc9ab465de53~mv2.jpeg" alt="Jornada SPM 4">
+                </div>
+                <div class="gallery-item">
+                    <img src="https://static.wixstatic.com/media/ea7cef_487fd6a3063b469eaf872c499f56f1c0~mv2.jpeg/v1/fill/w_400,h_300,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/ea7cef_487fd6a3063b469eaf872c499f56f1c0~mv2.jpeg" alt="Jornada SPM 5">
+                </div>
+                <div class="gallery-item">
+                    <img src="https://static.wixstatic.com/media/ea7cef_f043c102c43d4b3e8517cd8038b3b6d3~mv2.jpeg/v1/fill/w_400,h_300,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/ea7cef_f043c102c43d4b3e8517cd8038b3b6d3~mv2.jpeg" alt="Jornada SPM 6">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Gallery Section: Diplomado -->
+    <section class="gallery-section">
+        <div class="container">
+            <h2 class="gallery-category-title">Diplomado de DDH, Género e Institucionalidad<br>(Prov. San Pedro de Macorís)</h2>
+            
+            <div class="slider-gallery">
+                <div class="slider-container">
+                    <div class="slider-item">
+                        <img src="https://static.wixstatic.com/media/ea7cef_882e24e92cf146e59ce9a80b578b1864~mv2.jpg/v1/fill/w_300,h_300,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/ea7cef_882e24e92cf146e59ce9a80b578b1864~mv2.jpg" alt="Diplomado 1">
+                    </div>
+                    <div class="slider-item">
+                        <img src="https://static.wixstatic.com/media/ea7cef_405b4599eb884c149c0d28e02cc912c1~mv2.jpg/v1/fill/w_300,h_300,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/ea7cef_405b4599eb884c149c0d28e02cc912c1~mv2.jpg" alt="Diplomado 2">
+                    </div>
+                    <div class="slider-item">
+                        <img src="https://static.wixstatic.com/media/ea7cef_b1817ec453104d05857109d88bdde0e9~mv2.jpg/v1/fill/w_300,h_300,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/ea7cef_b1817ec453104d05857109d88bdde0e9~mv2.jpg" alt="Diplomado 3">
+                    </div>
+                    <div class="slider-item">
+                        <img src="https://static.wixstatic.com/media/ea7cef_e19b26f6b45c4c1db674e6641a69dd2e~mv2.jpg/v1/fill/w_300,h_300,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/ea7cef_e19b26f6b45c4c1db674e6641a69dd2e~mv2.jpg" alt="Diplomado 4">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Gallery Section: Ciclo de talleres -->
+    <section class="gallery-section">
+        <div class="container">
+            <h2 class="gallery-category-title">Ciclo de talleres: Derechos a decidir de las Mujeres<br>(San Cristóbal)</h2>
+            
+            <div class="gallery-masonry">
+                <div class="gallery-item">
+                    <img src="https://static.wixstatic.com/media/ea7cef_5d7de041bab0485b8645afd494d180a7~mv2.jpeg/v1/fill/w_400,h_300,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/ea7cef_5d7de041bab0485b8645afd494d180a7~mv2.jpeg" alt="Taller 1">
+                    <div class="gallery-item-overlay">
+                        <h4>Taller de derechos de la mujer</h4>
+                    </div>
+                </div>
+                <div class="gallery-item">
+                    <img src="https://static.wixstatic.com/media/ea7cef_416a6074287048d2aceb7e50fd58a90c~mv2.jpeg/v1/fill/w_400,h_300,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/ea7cef_416a6074287048d2aceb7e50fd58a90c~mv2.jpeg" alt="Taller 2">
+                    <div class="gallery-item-overlay">
+                        <h4>Participación activa</h4>
+                    </div>
+                </div>
+                <div class="gallery-item">
+                    <img src="https://static.wixstatic.com/media/ea7cef_6ff44bb7625b4e8ca3ed17ff8cf3cfcb~mv2.jpeg/v1/fill/w_400,h_300,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/ea7cef_6ff44bb7625b4e8ca3ed17ff8cf3cfcb~mv2.jpeg" alt="Taller 3">
+                    <div class="gallery-item-overlay">
+                        <h4>Formación y capacitación</h4>
+                    </div>
+                </div>
+                <div class="gallery-item">
+                    <img src="https://static.wixstatic.com/media/ea7cef_51cf7b71aa7443e28ea3ea12602360ed~mv2.jpeg/v1/fill/w_400,h_300,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/ea7cef_51cf7b71aa7443e28ea3ea12602360ed~mv2.jpeg" alt="Taller 4">
+                    <div class="gallery-item-overlay">
+                        <h4>Empoderamiento femenino</h4>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Gallery Section: Relaciones de Género -->
+    <section class="gallery-section">
+        <div class="container">
+            <h2 class="gallery-category-title">Relaciones de Género y Nueva Masculinidad<br>(Prov. San Cristóbal)</h2>
+            
+            <div class="gallery-masonry">
+                <div class="gallery-item">
+                    <img src="https://static.wixstatic.com/media/ea7cef_895ef61d40c3451c9dd273b0720c839e~mv2.jpeg/v1/fill/w_400,h_300,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/ea7cef_895ef61d40c3451c9dd273b0720c839e~mv2.jpeg" alt="Masculinidad 1">
+                </div>
+                <div class="gallery-item">
+                    <img src="https://static.wixstatic.com/media/ea7cef_886a71573bd445529d603f7595edea23~mv2.jpg/v1/fill/w_400,h_300,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/ea7cef_886a71573bd445529d603f7595edea23~mv2.jpg" alt="Masculinidad 2">
+                </div>
+                <div class="gallery-item">
+                    <img src="https://static.wixstatic.com/media/ea7cef_bb5e0886c4564109af488204034d194e~mv2.jpg/v1/fill/w_400,h_300,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/ea7cef_bb5e0886c4564109af488204034d194e~mv2.jpg" alt="Masculinidad 3">
+                </div>
+                <div class="gallery-item">
+                    <img src="https://static.wixstatic.com/media/ea7cef_48ab90dc05c44ba49572228f1b8f79e2~mv2.jpeg/v1/fill/w_400,h_300,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/ea7cef_48ab90dc05c44ba49572228f1b8f79e2~mv2.jpeg" alt="Masculinidad 4">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Gallery Section: Kits de higiene personal Samaná -->
+    <section class="gallery-section">
+        <div class="container">
+            <h2 class="gallery-category-title">Entregas de kits de higiene personal<br>(Prov. Samaná)</h2>
+            
+            <div class="slider-gallery">
+                <div class="slider-container">
+                    <div class="slider-item">
+                        <img src="https://static.wixstatic.com/media/ea7cef_e8de7b2be2b242e8a5c2d1f00f0a3b2c~mv2.jpg/v1/fill/w_300,h_300,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/ea7cef_e8de7b2be2b242e8a5c2d1f00f0a3b2c~mv2.jpg" alt="Samaná 1">
+                    </div>
+                    <div class="slider-item">
+                        <img src="https://static.wixstatic.com/media/ea7cef_a8b1274d10f14df1952568520bc9413d~mv2.jpg/v1/fill/w_300,h_300,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/ea7cef_a8b1274d10f14df1952568520bc9413d~mv2.jpg" alt="Samaná 2">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+  <!-- Lightbox Modal -->
+  <div class="lightbox" id="lightbox">
+    <div class="lightbox-content">
+      <button class="lightbox-close" onclick="closeLightbox()">&times;</button>
+      <img id="lightbox-img" src="" alt="">
+    </div>
+  </div>
+
+  <!-- Gallery Script -->
+  <script is:inline>
+        // Lightbox functionality
+        function openLightbox(imgSrc) {
+            const lightbox = document.getElementById('lightbox');
+            const lightboxImg = document.getElementById('lightbox-img');
+            lightboxImg.src = imgSrc;
+            lightbox.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+        
+        function closeLightbox() {
+            const lightbox = document.getElementById('lightbox');
+            lightbox.classList.remove('active');
+            document.body.style.overflow = '';
+        }
+        
+        // Add click listeners to all gallery items
+        document.addEventListener('DOMContentLoaded', () => {
+            const galleryItems = document.querySelectorAll('.gallery-item img, .slider-item img');
+            
+            galleryItems.forEach(item => {
+                item.addEventListener('click', () => {
+                    openLightbox(item.src);
+                });
+            });
+            
+            // Close lightbox on escape key
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'Escape') {
+                    closeLightbox();
+                }
+            });
+            
+            // Close lightbox on background click
+            document.getElementById('lightbox').addEventListener('click', (e) => {
+                if (e.target.id === 'lightbox') {
+                    closeLightbox();
+                }
+            });
+        });
+  </script>
+</Layout>

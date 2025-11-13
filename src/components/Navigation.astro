@@ -141,7 +141,7 @@ const isDropdownActive = (dropdown: any[]) => {
 
   .dropdown-menu {
     position: absolute;
-    top: calc(100% + 0.5rem);
+    top: 100%;
     left: 50%;
     background: rgba(255, 255, 255, 0.98);
     backdrop-filter: blur(20px);
@@ -149,6 +149,7 @@ const isDropdownActive = (dropdown: any[]) => {
     box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15);
     min-width: 200px;
     padding: 0.75rem 0;
+    margin-top: 0.5rem;
     opacity: 0;
     visibility: hidden;
     transform: translateX(-50%) translateY(-10px);
@@ -156,6 +157,18 @@ const isDropdownActive = (dropdown: any[]) => {
     z-index: 1000;
     border: 1px solid rgba(32, 206, 136, 0.1);
     pointer-events: none;
+  }
+
+  /* Add invisible bridge to prevent dropdown from closing */
+  .dropdown::after {
+    content: '';
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    height: 0.5rem;
+    background: transparent;
+    display: block;
   }
 
   .dropdown:hover .dropdown-menu {

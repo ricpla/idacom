@@ -5,8 +5,8 @@ class IDACOMWebsite {
     }
 
     init() {
-        this.setupEventListeners();
         this.setupScrollAnimations();
+        this.setupEventListeners();
         this.setupSmoothScrolling();
         this.setupMobileMenu();
         this.setupContactForm();
@@ -18,6 +18,7 @@ class IDACOMWebsite {
         this.setupCounterAnimations();
         this.setupParallaxEffects();
         this.setupMagneticEffects();
+        this.setupHeroSlideshow();
     }
 
     setupEventListeners() {
@@ -76,6 +77,14 @@ class IDACOMWebsite {
         const elementsToReveal = document.querySelectorAll(
             '.section-header, .about-text, .stat-card, .mv-card, .project-card, .news-card, .video-card, .gallery-item, .financier-card, .contact-info, .contact-form'
         );
+
+        if (!this.scrollObserver) {
+            // If observer isn't available, just show everything
+            elementsToReveal.forEach((element) => {
+                element.classList.add('revealed');
+            });
+            return;
+        }
 
         elementsToReveal.forEach((element, index) => {
             element.classList.add('scroll-reveal');
@@ -383,12 +392,12 @@ class IDACOMWebsite {
     }
 
     setupParallaxEffects() {
-        const parallaxElements = document.querySelectorAll('.hero-background, .floating-elements');
-        
+        const parallaxElements = document.querySelectorAll('.floating-elements');
+
         window.addEventListener('scroll', () => {
             const scrolled = window.pageYOffset;
             const rate = scrolled * -0.5;
-            
+
             parallaxElements.forEach(element => {
                 element.style.transform = `translateY(${rate}px)`;
             });
@@ -397,29 +406,51 @@ class IDACOMWebsite {
 
     setupMagneticEffects() {
         const magneticElements = document.querySelectorAll('.btn, .social-links a');
-        
+
         magneticElements.forEach(element => {
             element.addEventListener('mousemove', (e) => {
                 const rect = element.getBoundingClientRect();
                 const x = e.clientX - rect.left - rect.width / 2;
                 const y = e.clientY - rect.top - rect.height / 2;
-                
+
                 const distance = Math.sqrt(x * x + y * y);
                 const maxDistance = 50;
-                
+
                 if (distance < maxDistance) {
                     const strength = (maxDistance - distance) / maxDistance;
                     const moveX = x * strength * 0.3;
                     const moveY = y * strength * 0.3;
-                    
+
                     element.style.transform = `translate(${moveX}px, ${moveY}px) scale(1.05)`;
                 }
             });
-            
+
             element.addEventListener('mouseleave', () => {
                 element.style.transform = '';
             });
         });
+    }
+
+    setupHeroSlideshow() {
+        const slides = document.querySelectorAll('.hero-slide');
+        if (slides.length === 0) return;
+
+        let currentSlide = 0;
+        const slideInterval = 5000; // 5 seconds per slide
+
+        const changeSlide = () => {
+            // Remove active class from current slide
+            slides[currentSlide].classList.remove('active');
+
+            // Move to next slide
+            currentSlide = (currentSlide + 1) % slides.length;
+
+            // Add active class to new slide
+            slides[currentSlide].classList.add('active');
+        };
+
+        // Start the slideshow
+        setInterval(changeSlide, slideInterval);
     }
 
     // Utility functions

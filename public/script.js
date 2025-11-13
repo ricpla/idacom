@@ -5,7 +5,6 @@ class IDACOMWebsite {
     }
 
     init() {
-        this.setupScrollAnimations();
         this.setupEventListeners();
         this.setupSmoothScrolling();
         this.setupMobileMenu();
@@ -51,48 +50,8 @@ class IDACOMWebsite {
                 setTimeout(() => loading.remove(), 500);
             }
         }, 1000);
-
-        // Initialize scroll reveal animations
-        this.revealElements();
     }
 
-    setupScrollAnimations() {
-        const observerOptions = {
-            threshold: 0.1,
-            rootMargin: '0px 0px -50px 0px'
-        };
-
-        this.scrollObserver = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('revealed');
-                    // Stop observing once revealed
-                    this.scrollObserver.unobserve(entry.target);
-                }
-            });
-        }, observerOptions);
-    }
-
-    revealElements() {
-        const elementsToReveal = document.querySelectorAll(
-            '.section-header, .about-text, .stat-card, .mv-card, .project-card, .news-card, .video-card, .gallery-item, .financier-card, .contact-info, .contact-form'
-        );
-
-        if (!this.scrollObserver) {
-            // If observer isn't available, just show everything
-            elementsToReveal.forEach((element) => {
-                element.classList.add('revealed');
-            });
-            return;
-        }
-
-        elementsToReveal.forEach((element, index) => {
-            element.classList.add('scroll-reveal');
-            // Add staggered delay
-            element.style.transitionDelay = `${index * 0.1}s`;
-            this.scrollObserver.observe(element);
-        });
-    }
 
     setupSmoothScrolling() {
         // Smooth scroll for navigation links
@@ -877,9 +836,6 @@ class VideoSlider {
         this.createDots();
         this.setupEventListeners();
         this.updateSlider();
-
-        // Auto-play (optional)
-        this.startAutoPlay();
     }
 
     createDots() {
@@ -915,7 +871,6 @@ class VideoSlider {
         this.slider.addEventListener('touchstart', (e) => {
             startX = e.touches[0].clientX;
             isDragging = true;
-            this.stopAutoPlay();
         });
 
         this.slider.addEventListener('touchmove', (e) => {
@@ -937,25 +892,6 @@ class VideoSlider {
             }
 
             isDragging = false;
-            this.startAutoPlay();
-        });
-
-        // Keyboard navigation
-        document.addEventListener('keydown', (e) => {
-            if (e.key === 'ArrowLeft') {
-                this.prev();
-            } else if (e.key === 'ArrowRight') {
-                this.next();
-            }
-        });
-
-        // Pause autoplay when hovering
-        this.slider.addEventListener('mouseenter', () => {
-            this.stopAutoPlay();
-        });
-
-        this.slider.addEventListener('mouseleave', () => {
-            this.startAutoPlay();
         });
     }
 
@@ -963,23 +899,15 @@ class VideoSlider {
         if (this.isAnimating) return;
         this.isAnimating = true;
 
-        // For desktop: calculate the scroll position
-        if (window.innerWidth > 768) {
-            const cardWidth = this.cards[0].offsetWidth;
-            const gap = parseInt(getComputedStyle(this.slider).gap) || 32;
-            const scrollPosition = this.currentIndex * (cardWidth + gap);
+        // Calculate the scroll position for both desktop and mobile
+        const cardWidth = this.cards[0].offsetWidth;
+        const gap = parseInt(getComputedStyle(this.slider).gap) || 32;
+        const scrollPosition = this.currentIndex * (cardWidth + gap);
 
-            this.slider.scrollTo({
-                left: scrollPosition,
-                behavior: 'smooth'
-            });
-        } else {
-            // For mobile: use scroll snap
-            const card = this.cards[this.currentIndex];
-            if (card) {
-                card.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
-            }
-        }
+        this.slider.scrollTo({
+            left: scrollPosition,
+            behavior: 'smooth'
+        });
 
         // Update dots
         this.dots.forEach((dot, index) => {
@@ -1006,8 +934,6 @@ class VideoSlider {
         if (index < 0 || index >= this.cards.length || index === this.currentIndex) return;
         this.currentIndex = index;
         this.updateSlider();
-        this.stopAutoPlay();
-        this.startAutoPlay();
     }
 
     next() {

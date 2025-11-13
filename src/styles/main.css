@@ -124,17 +124,18 @@ body::before {
 .nav-menu {
     display: flex;
     align-items: center;
-    gap: 2rem;
+    gap: 1.25rem;
 }
 
 .nav-link {
     text-decoration: none;
     color: var(--text-color);
     font-weight: 500;
-    font-size: 0.9rem;
+    font-size: 0.875rem;
     transition: var(--transition);
     padding: 0.5rem 0;
     position: relative;
+    white-space: nowrap;
 }
 
 .nav-link:hover,
@@ -169,6 +170,11 @@ body::before {
     box-shadow: var(--shadow-colored);
 }
 
+.btn-donate span {
+    position: relative;
+    z-index: 2;
+}
+
 .btn-donate::before {
     content: '';
     position: absolute;
@@ -178,6 +184,7 @@ body::before {
     height: 100%;
     background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
     transition: left 0.6s;
+    z-index: 1;
 }
 
 .btn-donate:hover::before {
@@ -383,37 +390,15 @@ body::before {
     color: white;
     border-color: var(--glass-border);
     backdrop-filter: blur(10px);
-    position: relative;
-    overflow: hidden;
-}
-
-.btn-secondary::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: var(--light-color);
-    transform: translateX(-100%);
-    transition: transform 0.4s ease;
-}
-
-.btn-secondary:hover::before {
-    transform: translateX(0);
+    transition: var(--transition);
 }
 
 .btn-secondary:hover {
-    color: black;
+    background: rgba(255, 255, 255, 0.25);
+    color: white;
     transform: translateY(-3px) scale(1.02);
     border-color: var(--light-color);
-    box-shadow: 0 15px 50px rgba(255, 255, 255, 0.2);
-}
-
-.btn-secondary span,
-.btn-secondary svg {
-    position: relative;
-    z-index: 1;
+    box-shadow: 0 15px 50px rgba(255, 255, 255, 0.3);
 }
 
 .btn-icon {
@@ -478,6 +463,7 @@ body::before {
     border-radius: 50%;
     transform: scale(0);
     transition: transform 0.4s ease;
+    z-index: 1;
 }
 
 .social-links a:hover::before {
@@ -491,12 +477,12 @@ body::before {
 
 .social-links a img {
     position: relative;
-    z-index: 1;
+    z-index: 2;
     transition: var(--transition);
 }
 
 .social-links a:hover img {
-    filter: brightness(0) invert(1);
+    filter: brightness(1.2);
 }
 
 .social-links img {
@@ -1243,6 +1229,11 @@ section {
     outline: none;
     border-color: var(--primary-color);
     background: rgba(255, 255, 255, 0.15);
+}
+
+.contact-form .btn-primary {
+    font-size: 1.1rem;
+    font-weight: 600;
 }
 
 .form-success {

@@ -1,0 +1,655 @@
+---
+import Layout from "../layouts/Layout.astro";
+
+// Blog posts data
+const posts = [
+  {
+    id: "d742945a-225a-4e39-93f7-e317f6d0fe8a",
+    title: "Invitando a una reunión de Zoom programada. Enfocado en la comunidad y los hogares",
+    excerpt: "Instituto de Accion Comunitaria IDACOM le está invitando a una reunión de Zoom programada. Tema: Reciclaje: Enfocado en la comunidad y...",
+    date: "8 jul",
+    readTime: "1 Min. de lectura",
+    views: "54 visualizaciones",
+    comments: "0 comentarios",
+    likes: 0,
+    author: "idacom1983",
+    url: "/news/zoom-reunion-reciclaje",
+  },
+  {
+    id: "f7a2e02e-95db-49a3-9c6c-5091183274eb",
+    title: "¿Qué se sabe hasta ahora sobre el caso del niño desaparecido en Jarabacoa? CALZADO DEL NIÑO PERDIDO EN JARABACOA LEVANTA GRANDES SOSPECHAS",
+    excerpt: "Las autoridades han reconstruido la escena donde Roldanis Calderón, de tres años, fue visto por última vez La desaparición del niño ...",
+    date: "3 abr",
+    readTime: "1 Min. de lectura",
+    views: "9 visualizaciones",
+    comments: "0 comentarios",
+    likes: 1,
+    author: "idacom1983",
+    image: "https://static.wixstatic.com/media/ea7cef_32c9f889d9c34dab93f1dd5969461741~mv2.jpg/v1/fill/w_454,h_341,fp_0.50_0.50,q_90,enc_avif,quality_auto/ea7cef_32c9f889d9c34dab93f1dd5969461741~mv2.jpg",
+    url: "/news/nino-desaparecido-jarabacoa",
+  },
+  {
+    id: "6ab35acc-daf9-4407-8d33-df143bba77b7",
+    title: "Violencia contra las mujeres en República Dominicana. Por: Yohanna Guzmán",
+    excerpt: "En República Dominicana, la violencia de género, incluyendo el feminicidio y la violencia intrafamiliar, es un problema grave, con un...",
+    date: "3 abr",
+    readTime: "1 Min. de lectura",
+    views: "6 visualizaciones",
+    comments: "0 comentarios",
+    likes: 1,
+    author: "idacom1983",
+    video: "https://www.youtube.com/embed/ps3pnO6b28Q",
+    thumbnail: "https://i.ytimg.com/vi/ps3pnO6b28Q/maxresdefault.jpg",
+    url: "/news/violencia-mujeres-republica-dominicana",
+  },
+  {
+    id: "97516090-f334-4af3-a86a-4f3a1743e502",
+    title: "DETENGAMOS YA LA VIOLENCIA DE GÉNERO E INTRAFAMILIAR",
+    excerpt: "Como una verdadera epidemia que amenaza la vida de la mujer dominicana califico hoy el Instituto de Acción Comunitaria IDACOM la...",
+    date: "3 abr",
+    readTime: "1 Min. de lectura",
+    views: "12 visualizaciones",
+    comments: "0 comentarios",
+    likes: 2,
+    author: "idacom1983",
+    video: "https://video.wixstatic.com/video/ea7cef_87f6dd388bde4c258d71fb7f7b56236e/1080p/mp4/file.mp4",
+    thumbnail: "https://static.wixstatic.com/media/ea7cef_87f6dd388bde4c258d71fb7f7b56236ef000.jpg/v1/fill/w_454,h_341,fp_0.50_0.50,q_90,enc_avif,quality_auto/ea7cef_87f6dd388bde4c258d71fb7f7b56236ef000.webp",
+    url: "/news/detengamos-violencia-genero",
+  },
+];
+---
+
+<Layout
+  title="Noticias - IDACOM"
+  description="Últimas noticias y publicaciones del Instituto de Acción Comunitaria Inc. (IDACOM)"
+>
+  <!-- Page Hero -->
+  <section class="page-hero">
+    <div class="hero-background">
+      <img
+        src="https://static.wixstatic.com/media/ea7cef_35ca7b6109bb4d70a4e3d60991439097~mv2.jpg/v1/fill/w_1018,h_852,al_c,q_85,enc_avif,quality_auto/ea7cef_35ca7b6109bb4d70a4e3d60991439097~mv2.jpg"
+        alt="IDACOM Background"
+        class="hero-bg-image"
+      />
+      <div class="hero-overlay"></div>
+    </div>
+
+    <div class="hero-content">
+      <h1 class="page-title">NOTICIAS</h1>
+      <div class="title-divider"></div>
+      <p class="page-subtitle">
+        Mantente informado sobre nuestras actividades y noticias de la comunidad
+      </p>
+    </div>
+  </section>
+
+  <!-- Blog Navigation -->
+  <section class="blog-header">
+    <div class="container">
+      <nav class="blog-nav">
+        <ul>
+          <li><a href="/noticias" class="active">Todas las Publicaciones</a></li>
+        </ul>
+      </nav>
+      <div class="blog-search">
+        <input
+          type="text"
+          id="searchInput"
+          placeholder="Buscar"
+          class="search-input"
+        />
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="19"
+          viewBox="0 0 19 19"
+          class="search-icon"
+        >
+          <path
+            d="M12.8617648,11.8617648 L15.8633394,14.8633394 C15.9414442,14.9414442 15.9414442,15.0680772 15.8633394,15.1461821 L15.1461821,15.8633394 C15.0680772,15.9414442 14.9414442,15.9414442 14.8633394,15.8633394 L11.8617648,12.8617648 C10.9329713,13.578444 9.76865182,14.0047607 8.50476074,14.0047607 C5.46719462,14.0047607 3.00476074,11.5423269 3.00476074,8.50476074 C3.00476074,5.46719462 5.46719462,3.00476074 8.50476074,3.00476074 C11.5423269,3.00476074 14.0047607,5.46719462 14.0047607,8.50476074 C14.0047607,9.76865182 13.578444,10.9329713 12.8617648,11.8617648 Z M8.5,13 C10.9852814,13 13,10.9852814 13,8.5 C13,6.01471863 10.9852814,4 8.5,4 C6.01471863,4 4,6.01471863 4,8.5 C4,10.9852814 6.01471863,13 8.5,13 Z"
+          ></path>
+        </svg>
+      </div>
+    </div>
+  </section>
+
+  <!-- Blog Posts Section -->
+  <section class="blog-posts">
+    <div class="container">
+      <div class="posts-grid" id="postsGrid">
+        {
+          posts.map((post) => (
+            <article class="post-card premium-glow" data-post-id={post.id}>
+              <a href={post.url} class="post-link">
+                {/* Post Image or Video Thumbnail */}
+                {(post.image || post.thumbnail) && (
+                  <div class="post-media">
+                    <img
+                      src={post.image || post.thumbnail}
+                      alt={post.title}
+                      class="post-image"
+                    />
+                    {post.video && (
+                      <div class="play-overlay">
+                        <svg
+                          viewBox="0 0 60 60"
+                          fill="currentColor"
+                          width="60"
+                          height="60"
+                          class="play-icon"
+                        >
+                          <path d="M30,0c16.6,0,30,13.4,30,30S46.6,60,30,60C13.4,60,0,46.6,0,30S13.4,0,30,0z" />
+                          <path d="M41.5,30l-17,10V20L41.5,30z" fill="white" />
+                        </svg>
+                      </div>
+                    )}
+                  </div>
+                )}
+
+                {/* Post Content */}
+                <div class="post-content">
+                  <h2 class="post-title">{post.title}</h2>
+                  <p class="post-excerpt">{post.excerpt}</p>
+
+                  {/* Post Meta */}
+                  <div class="post-meta">
+                    <div class="meta-left">
+                      <div class="author-avatar">
+                        <svg
+                          width="32"
+                          height="32"
+                          viewBox="0 0 1000 1000"
+                          class="avatar-svg"
+                        >
+                          <circle cx="500" cy="500" r="500" fill="#cccccc" />
+                          <path
+                            fill="#a0a09f"
+                            d="M830.8,874.927c-77.344-60.8-187.181-104.877-227.88-111.347-20.335-3.233-20.8-59.1-20.8-59.1s59.746-59.106,72.768-138.584c35.029,0,56.666-84.5,21.631-114.226C677.986,420.37,721.551,206,501,206S324.015,420.37,325.473,451.666c-35.033,29.729-13.4,114.226,21.632,114.226,13.021,79.478,72.77,138.584,72.77,138.584s-0.464,55.871-20.8,59.1c-40.883,6.5-151.537,50.943-228.934,112.176C65.84,784.12,0,649.751,0,500,0,223.858,223.858,0,500,0s500,223.858,500,500C1000,649.3,934.559,783.311,830.8,874.927ZM500,1000h0Z"
+                          />
+                        </svg>
+                      </div>
+                      <div class="meta-info">
+                        <span class="author-name">{post.author}</span>
+                        <div class="meta-details">
+                          <span>{post.date}</span>
+                          <span class="separator">•</span>
+                          <span>{post.readTime}</span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Post Footer */}
+                  <div class="post-footer">
+                    <div class="post-stats">
+                      <span>{post.views}</span>
+                      <span>{post.comments}</span>
+                    </div>
+                    <div class="post-actions">
+                      <button class="like-button" aria-label="Me gusta">
+                        {post.likes > 0 && (
+                          <span class="like-count">{post.likes}</span>
+                        )}
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          width="19"
+                          viewBox="0 0 19 19"
+                          class="heart-icon"
+                        >
+                          <path d="M9.44985848,15.5291774 C9.43911371,15.5362849 9.42782916,15.5449227 9.41715267,15.5553324 L9.44985848,15.5291774 Z M9.44985848,15.5291774 L9.49370677,15.4941118 C9.15422701,15.7147757 10.2318883,15.0314406 10.7297038,14.6971183 C11.5633567,14.1372547 12.3827081,13.5410755 13.1475707,12.9201001 C14.3829188,11.9171478 15.3570936,10.9445466 15.9707237,10.0482572 C16.0768097,9.89330422 16.1713564,9.74160032 16.2509104,9.59910798 C17.0201658,8.17755699 17.2088969,6.78363112 16.7499013,5.65913129 C16.4604017,4.81092573 15.7231445,4.11008901 14.7401472,3.70936139 C13.1379564,3.11266008 11.0475663,3.84092251 9.89976068,5.36430396 L9.50799408,5.8842613 L9.10670536,5.37161711 C7.94954806,3.89335486 6.00516066,3.14638251 4.31830373,3.71958508 C3.36517186,4.00646284 2.65439601,4.72068063 2.23964629,5.77358234 C1.79050315,6.87166888 1.98214559,8.26476279 2.74015555,9.58185512 C2.94777753,9.93163559 3.23221417,10.3090129 3.5869453,10.7089994 C4.17752179,11.3749196 4.94653811,12.0862394 5.85617417,12.8273544 C7.11233096,13.8507929 9.65858244,15.6292133 9.58280954,15.555334 C9.53938013,15.5129899 9.48608859,15.5 9.50042471,15.5 C9.5105974,15.5 9.48275828,15.5074148 9.44985848,15.5291774 Z" />
+                        </svg>
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </a>
+            </article>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <style>
+    /* Page Hero Styles */
+    .page-hero {
+      position: relative;
+      height: 60vh;
+      min-height: 500px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-top: 80px;
+      overflow: hidden;
+    }
+
+    .hero-background {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 0;
+    }
+
+    .hero-bg-image {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .hero-overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(
+        135deg,
+        rgba(30, 45, 59, 0.85),
+        rgba(32, 206, 136, 0.3)
+      );
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 1;
+      text-align: center;
+      color: white;
+    }
+
+    .page-title {
+      font-size: 4rem;
+      font-weight: 700;
+      margin-bottom: 1rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      text-shadow: 2px 2px 20px rgba(0, 0, 0, 0.3);
+      animation: fadeInUp 0.8s ease-out;
+    }
+
+    .title-divider {
+      width: 150px;
+      height: 4px;
+      background: var(--primary-gradient);
+      margin: 0 auto 1.5rem;
+      border-radius: 2px;
+      animation: fadeInUp 0.8s ease-out 0.2s both;
+    }
+
+    .page-subtitle {
+      font-size: 1.2rem;
+      opacity: 0.9;
+      animation: fadeInUp 0.8s ease-out 0.4s both;
+    }
+
+    /* Blog Header */
+    .blog-header {
+      background: white;
+      padding: 2rem 0;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+      position: sticky;
+      top: 80px;
+      z-index: 100;
+    }
+
+    .blog-header .container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 2rem;
+    }
+
+    .blog-nav ul {
+      list-style: none;
+      display: flex;
+      gap: 2rem;
+      margin: 0;
+      padding: 0;
+    }
+
+    .blog-nav a {
+      text-decoration: none;
+      color: var(--text-color);
+      font-weight: 500;
+      padding-bottom: 0.5rem;
+      transition: var(--transition);
+      border-bottom: 2px solid transparent;
+    }
+
+    .blog-nav a:hover,
+    .blog-nav a.active {
+      color: var(--primary-color);
+      border-bottom-color: var(--primary-color);
+    }
+
+    .blog-search {
+      position: relative;
+      max-width: 300px;
+      flex: 1;
+    }
+
+    .search-input {
+      width: 100%;
+      padding: 0.75rem 1rem 0.75rem 2.5rem;
+      border: 1px solid #e0e0e0;
+      border-radius: var(--border-radius);
+      font-size: 0.95rem;
+      transition: var(--transition);
+    }
+
+    .search-input:focus {
+      outline: none;
+      border-color: var(--primary-color);
+      box-shadow: 0 0 0 3px rgba(32, 206, 136, 0.1);
+    }
+
+    .search-icon {
+      position: absolute;
+      left: 0.75rem;
+      top: 50%;
+      transform: translateY(-50%);
+      fill: #666;
+      pointer-events: none;
+    }
+
+    /* Blog Posts Section */
+    .blog-posts {
+      padding: 4rem 0;
+      background: var(--gray-color);
+      min-height: 60vh;
+    }
+
+    .posts-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 2rem;
+      max-width: 940px;
+      margin: 0 auto;
+    }
+
+    .post-card {
+      background: white;
+      border-radius: var(--border-radius-lg);
+      overflow: hidden;
+      transition: var(--transition);
+      border: 1px solid rgba(247, 247, 247, 0.75);
+    }
+
+    .post-card:hover {
+      transform: translateY(-5px);
+      box-shadow: var(--shadow-lg);
+    }
+
+    .post-link {
+      text-decoration: none;
+      color: inherit;
+      display: grid;
+      grid-template-columns: 454px 1fr;
+      min-height: 340px;
+    }
+
+    .post-media {
+      position: relative;
+      width: 454px;
+      height: 340px;
+      overflow: hidden;
+      background: #f5f5f5;
+    }
+
+    .post-image {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: var(--transition);
+    }
+
+    .post-card:hover .post-image {
+      transform: scale(1.05);
+    }
+
+    .play-overlay {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      color: white;
+      opacity: 0.9;
+      transition: var(--transition);
+    }
+
+    .post-card:hover .play-overlay {
+      opacity: 1;
+      transform: translate(-50%, -50%) scale(1.1);
+    }
+
+    .post-content {
+      padding: 2.5rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .post-title {
+      font-size: 1.75rem;
+      font-weight: 600;
+      margin: 0 0 1rem;
+      line-height: 1.3;
+      color: var(--dark-color);
+      transition: var(--transition);
+      display: -webkit-box;
+      -webkit-line-clamp: 3;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+
+    .post-card:hover .post-title {
+      color: var(--primary-color);
+    }
+
+    .post-excerpt {
+      font-size: 1rem;
+      color: #666;
+      margin: 0 0 1.5rem;
+      line-height: 1.6;
+      display: -webkit-box;
+      -webkit-line-clamp: 3;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+
+    .post-meta {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-bottom: 1rem;
+      border-bottom: 1px solid #f0f0f0;
+      margin-bottom: 1rem;
+    }
+
+    .meta-left {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .author-avatar {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      overflow: hidden;
+    }
+
+    .avatar-svg {
+      width: 100%;
+      height: 100%;
+    }
+
+    .meta-info {
+      display: flex;
+      flex-direction: column;
+      gap: 0.25rem;
+    }
+
+    .author-name {
+      font-size: 0.9rem;
+      font-weight: 500;
+      color: var(--dark-color);
+    }
+
+    .meta-details {
+      font-size: 0.75rem;
+      color: #999;
+      display: flex;
+      gap: 0.5rem;
+      align-items: center;
+    }
+
+    .separator {
+      color: #ddd;
+    }
+
+    .post-footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 0.75rem;
+      color: #999;
+    }
+
+    .post-stats {
+      display: flex;
+      gap: 1rem;
+    }
+
+    .post-actions {
+      display: flex;
+      gap: 1rem;
+    }
+
+    .like-button {
+      background: none;
+      border: none;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      color: #999;
+      transition: var(--transition);
+      padding: 0.25rem;
+    }
+
+    .like-button:hover {
+      color: var(--primary-color);
+    }
+
+    .like-count {
+      font-size: 0.85rem;
+    }
+
+    .heart-icon {
+      fill: currentColor;
+    }
+
+    /* Animations */
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* Responsive */
+    @media (max-width: 968px) {
+      .post-link {
+        grid-template-columns: 1fr;
+      }
+
+      .post-media {
+        width: 100%;
+        height: 300px;
+      }
+
+      .post-content {
+        padding: 2rem;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .page-title {
+        font-size: 2.5rem;
+      }
+
+      .page-subtitle {
+        font-size: 1rem;
+      }
+
+      .blog-header .container {
+        flex-direction: column;
+        align-items: stretch;
+      }
+
+      .blog-search {
+        max-width: 100%;
+      }
+
+      .page-hero {
+        height: 50vh;
+        min-height: 400px;
+      }
+
+      .post-title {
+        font-size: 1.5rem;
+      }
+
+      .post-excerpt {
+        font-size: 0.95rem;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .post-content {
+        padding: 1.5rem;
+      }
+
+      .post-meta {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.5rem;
+      }
+    }
+  </style>
+
+  <script is:inline>
+    // Search functionality
+    const searchInput = document.getElementById("searchInput");
+    const postsGrid = document.getElementById("postsGrid");
+
+    searchInput?.addEventListener("input", function (e) {
+      const searchTerm = e.target.value.toLowerCase();
+      const posts = postsGrid.querySelectorAll(".post-card");
+
+      posts.forEach((post) => {
+        const title = post.querySelector(".post-title")?.textContent.toLowerCase();
+        const excerpt = post.querySelector(".post-excerpt")?.textContent.toLowerCase();
+
+        if (title?.includes(searchTerm) || excerpt?.includes(searchTerm)) {
+          post.style.display = "block";
+        } else {
+          post.style.display = "none";
+        }
+      });
+    });
+
+    // Like button functionality
+    document.querySelectorAll(".like-button").forEach((button) => {
+      button.addEventListener("click", function (e) {
+        e.preventDefault();
+        this.classList.toggle("liked");
+      });
+    });
+  </script>
+</Layout>
